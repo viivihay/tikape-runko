@@ -36,10 +36,12 @@ public class Database {
     }
     
     //tähän jotakin fiksua miten tää saatais lisättyä tohon alla olevaan databaseen
-    private void addToDatabase(String nimi){
-        ArrayList<String> lista = new ArrayList<>();
+    public void addToDatabase(String nimi) throws Exception{
+        Connection connection = getConnection();
         
-        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("INSERT INTO Opiskelija (nimi) VALUES ('"+nimi+"');");
+        
     }
 
     private List<String> sqliteLauseet() {

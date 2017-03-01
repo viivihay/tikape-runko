@@ -30,7 +30,7 @@ public class Main {
             HashMap map = new HashMap<>();
             if (req.queryParams().contains("aihe")) {
                  String content = req.queryParams("aihe");
-                 map.put("aihe", content);
+                 database.addToDatabase(content);
             }
             return "";
         });
