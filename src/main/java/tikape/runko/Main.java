@@ -10,7 +10,7 @@ import tikape.runko.database.OpiskelijaDao;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:sqlite:opiskelijat.db");
+        Database database = new Database("jdbc:sqlite:etusivu.db");
         database.init();
 
         OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
@@ -19,18 +19,30 @@ public class Main {
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "Täällä pääset keskustelemaan kuumimmista ja ajankohtaisimmista aiheista yhdessä muiden opiskelijoiden kanssa.");
+            
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-
-        get("/opiskelijat", (req, res) -> {
+        
+        //databaseen lisäys work in progress, ei vielä lisää mitään.
+        post("/etusivu", (req, res) -> {
+            res.redirect("/etusivu");
             HashMap map = new HashMap<>();
-            map.put("opiskelijat", opiskelijaDao.findAll());
+            if (req.queryParams().contains("aihe")) {
+                 String content = req.queryParams("aihe");
+                 map.put("aihe", content);
+            }
+            return "";
+        });
 
-            return new ModelAndView(map, "opiskelijat");
+        get("/etusivu", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("etusivu", opiskelijaDao.findAll());
+
+            return new ModelAndView(map, "etusivu");
         }, new ThymeleafTemplateEngine());
 
-        get("/opiskelijat/:id", (req, res) -> {
+        get("/etusivu/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("opiskelija", opiskelijaDao.findOne(Integer.parseInt(req.params("id"))));
 

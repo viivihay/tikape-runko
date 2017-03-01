@@ -34,6 +34,13 @@ public class Database {
             System.out.println("Error >> " + t.getMessage());
         }
     }
+    
+    //tähän jotakin fiksua miten tää saatais lisättyä tohon alla olevaan databaseen
+    private void addToDatabase(String nimi){
+        ArrayList<String> lista = new ArrayList<>();
+        
+        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
+    }
 
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();

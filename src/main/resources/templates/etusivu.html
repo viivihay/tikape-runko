@@ -11,9 +11,17 @@
         <h2>tai perusta vaikka kokonaan uusi!</h2>
 
         <ol>
-            <li th:each="opiskelija: ${opiskelijat}">
-                <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> <a th:href="${'/opiskelijat/' + opiskelija.id}">linkki</a>
+            <li th:each="opiskelija: ${etusivu}">
+                <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> <a th:href="${'/etusivu/' + opiskelija.id}">linkki</a>
             </li>
+
         </ol>
+
+        <h3>Aloita uusi keskustelualue</h3>
+
+        <form action="/etusivu" method="POST">
+            <input type="text" name="aihe"/>
+            <input type="submit" name ="lähetä"/>
+        </form>
     </body>
 </html>
