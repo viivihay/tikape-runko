@@ -5,15 +5,15 @@ import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
-import tikape.runko.database.OpiskelijaDao;
+import tikape.runko.database.AihealueDao;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:etusivu.db");
-        database.init();
+        
 
-        OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
+        AihealueDao AihealueDao = new AihealueDao(database);
         System.out.println("jippijaijeijei");
 
         get("/", (req, res) -> {
@@ -24,7 +24,7 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
         
-        //databaseen lisäys work in progress, ei vielä lisää mitään.
+        
         post("/etusivu", (req, res) -> {
             res.redirect("/etusivu");
             HashMap map = new HashMap<>();
@@ -37,16 +37,16 @@ public class Main {
 
         get("/etusivu", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("etusivu", opiskelijaDao.findAll());
+            map.put("etusivu", AihealueDao.findAll());
 
             return new ModelAndView(map, "etusivu");
         }, new ThymeleafTemplateEngine());
 
         get("/etusivu/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelija", opiskelijaDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("aihealue", AihealueDao.findOne(Integer.parseInt(req.params("id"))));
 
-            return new ModelAndView(map, "opiskelija");
+            return new ModelAndView(map, "aihealue");
         }, new ThymeleafTemplateEngine());
     }
 }
