@@ -13,7 +13,7 @@ public class Main {
         Database database = new Database("jdbc:sqlite:etusivu.db");
         
 
-        AihealueDao AihealueDao = new AihealueDao(database);
+        AihealueDao aihealueDao = new AihealueDao(database);
         System.out.println("jippijaijeijei");
 
         get("/", (req, res) -> {
@@ -37,14 +37,14 @@ public class Main {
 
         get("/etusivu", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("etusivu", AihealueDao.findAll());
+            map.put("etusivu", aihealueDao.findAll());
 
             return new ModelAndView(map, "etusivu");
         }, new ThymeleafTemplateEngine());
 
         get("/etusivu/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("aihealue", AihealueDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("aihealue", aihealueDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "aihealue");
         }, new ThymeleafTemplateEngine());

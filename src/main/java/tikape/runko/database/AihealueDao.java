@@ -24,7 +24,7 @@ public class AihealueDao implements Dao<Aihealue, Integer> {
     @Override
     public Aihealue findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Aihealue WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija WHERE id = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -49,7 +49,7 @@ public class AihealueDao implements Dao<Aihealue, Integer> {
     public List<Aihealue> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM aihealue");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija");
 
         ResultSet rs = stmt.executeQuery();
         List<Aihealue> opiskelijat = new ArrayList<>();

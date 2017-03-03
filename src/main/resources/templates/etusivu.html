@@ -11,8 +11,8 @@
         <h2>tai perusta vaikka kokonaan uusi!</h2>
 
         <ol>
-            <li th:each="opiskelija: ${etusivu}">
-                <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> <a th:href="${'/etusivu/' + opiskelija.id}">keskustele</a>
+            <li th:each="aihealue: ${etusivu}">
+                <span th:text="${aihealue.nimi}">opiskelijan nimi</span> <a th:href="${'/etusivu/' + aihealue.id}">keskustele</a>
             </li>
 
         </ol>

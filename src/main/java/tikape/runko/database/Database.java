@@ -1,8 +1,8 @@
 package tikape.runko.database;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 public class Database {
 
@@ -23,7 +23,7 @@ public class Database {
         Connection connection = getConnection();
         
         Statement statement = connection.createStatement();
-        statement.executeUpdate("INSERT INTO Aihealue (nimi) VALUES ('"+nimi+"');");
+        statement.executeUpdate("INSERT INTO Opiskelija (nimi) VALUES ('"+nimi+"');");
         
     }
 
