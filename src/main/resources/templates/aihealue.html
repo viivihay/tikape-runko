@@ -1,4 +1,3 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
@@ -7,10 +6,22 @@
     </head>
 
     <body>
-        <h1>Tervetuloa <span th:text="${aihealue.nimi}"> keskusteluun</span>!</h1>
+        <h1>Tervetuloa keskusteluun <span th:text="${aihealue.nimi}">otsikko</span> </h1>
+        <h2>Keskustelun tulee olla sivistynyttä</h2>
 
-        <p><span th:text="${aihealue.nimi}">opiskelija</span> </p>
-        
-        <p><a href="/etusivu">Palaa etusivulle</a></p>
+        <ol>
+            <li th:each="viesti: ${keskustelu}">
+                <span th:text="${viesti.nimi}">viesti</span> 
+            </li>
+
+        </ol>
+
+        <h3>Keskustele</h3>
+
+        <form action="/etusivu" method="POST">
+            <input type="text" name="viesti"/>
+            <input type="submit" name ="lähetä"/>
+        </form>
+        <a th:href="${'/etusivu'}">Takaisin etusivulle</a>
     </body>
 </html>
