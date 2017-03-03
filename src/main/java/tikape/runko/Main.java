@@ -66,7 +66,6 @@ public class Main {
             
             if (req.queryParams().contains("viesti")) {
                 
-                
                 String content = req.queryParams("viesti");
                 database.addToKeskustelu(content, Integer.parseInt(id));
             }
