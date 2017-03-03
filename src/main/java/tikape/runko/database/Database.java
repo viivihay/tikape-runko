@@ -37,7 +37,8 @@ public class Database {
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();
         
-        lista.add("CREATE TABLE Keskustelu (id integer PRIMARY KEY, nimi varchar(255));");
+        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
+        lista.add("CREATE TABLE Keskustelu (id integer PRIMARY KEY, nimi varchar(255), IDaihe integer);");
         
         return lista;
     }
@@ -52,7 +53,7 @@ public class Database {
         Connection connection = getConnection();
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate("INSERT INTO Keskustelu (nimi) VALUES ('" + viesti + "');");
+        statement.executeUpdate("INSERT INTO Keskustelu (nimi, IDaihe) VALUES ('" + viesti + "', "+ id +");");
     }
 
 }

@@ -53,7 +53,7 @@ public class Main {
         get("/etusivu/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("aihealue", aihealueDao.findOne(Integer.parseInt(req.params("id"))));
-            map.put("keskustelu", keskusteluDao.findAll());
+            map.put("keskustelu", keskusteluDao.findAll(Integer.parseInt(req.params("id"))));
             
 
             return new ModelAndView(map, "aihealue");

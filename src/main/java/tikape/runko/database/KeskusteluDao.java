@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Aihealue;
 
-public class KeskusteluDao implements Dao<Aihealue, Integer> {
+public class KeskusteluDao  {
 
     private Database database;
 
@@ -21,7 +21,7 @@ public class KeskusteluDao implements Dao<Aihealue, Integer> {
         this.database = database;
     }
 
-    @Override
+    
     public Aihealue findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Keskustelu WHERE id = ?");
@@ -45,11 +45,11 @@ public class KeskusteluDao implements Dao<Aihealue, Integer> {
         return o;
     }
 
-    @Override
-    public List<Aihealue> findAll() throws SQLException {
+    
+    public List<Aihealue> findAll(int IDaihe) throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Keskustelu");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Keskustelu WHERE IDaihe = "+IDaihe+"");
 
         ResultSet rs = stmt.executeQuery();
         List<Aihealue> opiskelijat = new ArrayList<>();
@@ -67,7 +67,7 @@ public class KeskusteluDao implements Dao<Aihealue, Integer> {
         return opiskelijat;
     }
 
-    @Override
+    
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
