@@ -64,9 +64,11 @@ public class Main {
             res.redirect(id);
             HashMap map = new HashMap<>();
             
-            if (req.queryParams().contains("viesti")) {
+            if (req.queryParams().contains("viesti") && req.queryParams().contains("nimi") ) {
+                String nimi = req.queryParams("nimi");
+                String content = req.queryParams("viesti") + "\n lähettäjä: "+nimi;
                 
-                String content = req.queryParams("viesti");
+                
                 database.addToKeskustelu(content, Integer.parseInt(id));
             }
             return "";
