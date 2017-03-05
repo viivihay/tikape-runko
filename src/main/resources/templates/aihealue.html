@@ -7,7 +7,7 @@
 
     <body>
         <h1>Tervetuloa keskusteluun <span th:text="${aihealue.nimi}">otsikko</span> </h1>
-        <h2>Keskustelun tulee olla sivistynyttä</h2>
+        <h2>Keskustelun tulee olla kohteliasta</h2>
 
         <ol>
             <li th:each="viesti: ${keskustelu}">
@@ -20,7 +20,7 @@
 
         <form method="POST">
             <input type="text" name="viesti"/>
-            <input type="text" name="nimi"/>
+            <h3> nimi </h3>"<input type="text" name="nimi"/>
             <input type="submit" name ="lähetä"/>
         </form>
         <a th:href="${'/etusivu'}">Takaisin etusivulle</a>

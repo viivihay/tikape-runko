@@ -66,7 +66,7 @@ public class Main {
             
             if (req.queryParams().contains("viesti") && req.queryParams().contains("nimi") ) {
                 String nimi = req.queryParams("nimi");
-                String content = req.queryParams("viesti") + "\n lähettäjä: "+nimi;
+                String content = req.queryParams("viesti") + "\n, lähettäjä: "+nimi;
                 
                 
                 database.addToKeskustelu(content, Integer.parseInt(id));
